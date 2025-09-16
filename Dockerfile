@@ -15,8 +15,8 @@ COPY . .
 # Puerto de la app
 EXPOSE 8080
 
-# Variable de entorno para Mongo (reemplazar con tu cadena real en ejecución)
-ENV MONGO_URL=mongodb://host.docker.internal:27017/adoptme
+#  Valor por defecto para la conexión a Mongo (se puede sobrescribir en `docker run -e MONGO_URL=...`)
+ENV MONGO_URL=mongodb://localhost:27017/adoptme
 
 
 CMD [ "npm", "start" ]
