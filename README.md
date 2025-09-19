@@ -10,10 +10,22 @@
 
 ---
 
+
+
 ## 🚀 Correr el proyecto local (sin Docker)
 1. Instala dependencias:
    ```bash
    npm install
+
+-Realizar lo siguientes comandos por si acaso:
+npm pkg set type="module"
+npm pkg set scripts.start="node src/app.js"
+npm pkg set scripts.dev="nodemon src/app.js"
+npm pkg set scripts.test="mocha \"test/**/*.js\" --timeout 15000"
+
+-En caso de no poder levantar el servidor probar los siguientes cambios en package.json: 
+  "dev": "nodemon --experimental-specifier-resolution=node src/app.js",
+  "start": "node --experimental-specifier-resolution=node src/app.js",
 
 2. Levantar el servidor:
 - npm run dev
@@ -21,6 +33,8 @@
 ---
 
 ## 🧪 Tests funcionales (adoption.router.js)
+*Importante: npm i -D mocha supertest chai nodemon
+
 Ejecuta:
 ```bash
 npm test
@@ -31,6 +45,23 @@ npm test
 - Archivo: `test/supertest.test.js`.
 
 ---
+
+## 🧪 Tests de Mocks (/api/mocks)
+
+Los tests cubren:
+- `GET /api/mocks/mockingusers?size=N` → genera usuarios en memoria (password encriptada, role user/admin, pets=[]).
+- `GET /api/mocks/mockingpets?size=N` → genera mascotas en memoria.
+- `POST /api/mocks/generateData` con `{ "users": 0, "pets": 0 }` → confirma el endpoint sin requerir DB.
+
+Ejecutar:
+```bash
+# API local en 8080
+npm test
+
+# Si corres en Docker en 8081
+TEST_BASE_URL=http://localhost:8081 npm test
+
+
 
 ## 📜 Cómo montar Swagger en `src/app.js`
 Instala dependencias:
