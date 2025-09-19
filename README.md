@@ -15,6 +15,9 @@
    ```bash
    npm install
 
+2. Levantar el servidor:
+- npm run dev
+
 ---
 
 ## 🧪 Tests funcionales (adoption.router.js)
@@ -22,6 +25,8 @@ Ejecuta:
 ```bash
 npm test
 ```
+*Si se corre en docker, se utiliza: TEST_BASE_URL=http://localhost:8081 npm test
+
 - Los tests usan **Supertest** sobre el **router real**. 
 - Archivo: `test/supertest.test.js`.
 
